@@ -1,18 +1,13 @@
 {
   "todos": [
     {
-      "id": "1",
-      "content": "todo 1",
-      "isDone": true
-    },
-    {
-      "id": "c544",
-      "content": "12",
+      "id": "6e7f",
+      "content": "123123",
       "isDone": false
     },
     {
-      "id": "8590",
-      "content": "나야",
+      "id": "090f",
+      "content": "222323",
       "isDone": false
     }
   ]
