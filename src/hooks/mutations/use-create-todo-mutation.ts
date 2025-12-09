@@ -10,11 +10,20 @@ export function useCreateTodoMutation() {
     onMutate: () => {},
     onSettled: () => {},
     onSuccess: (newTodo) => {
-      queryClient.setQueryData<Todo[]>(QUERY_KEY.todo.list, (prevTodos) => {
-        if (!prevTodos) return [newTodo];
-        return [...prevTodos, newTodo];
+      // 새로운 Todo정보를 캐시에 등록
+      queryClient.setQueryData<Todo>(
+        QUERY_KEY.todo.detail(newTodo.id),
+        newTodo,
+      );
+
+      // 기존 Todo id 리스트에 새로운 id추가
+      queryClient.setQueryData<string[]>(QUERY_KEY.todo.list, (prevTodoIds) => {
+        if (!prevTodoIds) return [newTodo.id];
+        return [...prevTodoIds, newTodo.id];
       });
     },
-    onError: (error) => {},
+    onError: (error) => {
+      console.log(error);
+    },
   });
 }
